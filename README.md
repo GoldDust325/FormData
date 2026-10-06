@@ -9,3 +9,7 @@ code in index.js rather than in the controllers directory --which is a better MV
 
 After hitting the Go button on the first form this is what the results will look like (notice it has read in the form data)
 ![image](https://github.com/grewe/FormData/assets/11790686/06ab7aed-cdaf-4e18-867b-2bf82061a372)
+
+## Lab N3.1
+
+Configured and tested locally using WebStorm, Node.js, Express, Git, and GitHub.
