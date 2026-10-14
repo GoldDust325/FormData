@@ -43,6 +43,74 @@
 </form>
 
 
+<hr>
+
+<h2>Lab N3.2: REST/JSON API using Fetch</h2>
+
+<p>
+  This form sends customer information to Express using
+  JavaScript fetch() and displays the JSON response
+  without reloading the page.
+</p>
+
+<form id="customerApiForm">
+  <label for="customerName">Name:</label>
+  <input type="text" id="customerName" required>
+
+  <br><br>
+
+  <label for="customerEmail">Email:</label>
+  <input type="email" id="customerEmail" required>
+
+  <br><br>
+
+  <button type="submit">Submit with Fetch</button>
+</form>
+
+<h3>API Response:</h3>
+<div id="apiResponse"></div>
+
+<script>
+  document.getElementById('customerApiForm')
+          .addEventListener('submit', async function(event) {
+
+            // Prevent the browser from reloading the page
+            event.preventDefault();
+
+            const name = document.getElementById('customerName').value;
+            const email = document.getElementById('customerEmail').value;
+            const responseDiv = document.getElementById('apiResponse');
+
+            try {
+              // Send JSON data to the Express REST endpoint
+              const response = await fetch('/api/customer', {
+                method: 'POST',
+                headers: {
+                  'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                  name: name,
+                  email: email
+                })
+              });
+
+              if (!response.ok) {
+                throw new Error('Request failed: ' + response.status);
+              }
+
+              // Convert the JSON response into a JavaScript object
+              const data = await response.json();
+
+              // Update the page without reloading
+              responseDiv.textContent = data.message +
+                      ' | Email: ' + data.email;
+
+            } catch (error) {
+              responseDiv.textContent = 'Error: ' + error.message;
+            }
+          });
+</script>
+
 
 </body>
 </html>

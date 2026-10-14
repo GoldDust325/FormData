@@ -74,5 +74,17 @@ router.post('/readCustomerInfoAndRespond', function(req, res, next) {
 
 
 });
+// Lab N3.2 - REST/JSON API
+// Receives customer information and returns a JSON response
+router.post('/api/customer', function(req, res) {
+  const name = req.body.name;
+  const email = req.body.email;
+
+  res.json({
+    message: "Welcome " + name,
+    email: email
+  });
+});
+
 
 module.exports = router;
