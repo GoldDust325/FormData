@@ -72,7 +72,18 @@ router.post('/readCustomerInfoAndRespond', function(req, res, next) {
   var value_email = req.body.email;  //retrieve the data associated with email
   res.send("Welcome,  " + value_name + "</br> We will reach you at: " + value_email);
 
+});
 
+// REST API endpoint that accepts customer information
+// and returns a JSON response
+router.post('/api/customer', function(req, res) {
+    const name = req.body.name;
+    const email = req.body.email;
+
+    res.json({
+        message: "Welcome " + name,
+        email: email
+    });
 });
 
 module.exports = router;
