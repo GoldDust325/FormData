@@ -44,5 +44,44 @@
 
 
 
+<hr>
+
+<h2>REST API Customer Form</h2>
+<p>Submit customer information using JavaScript fetch().</p>
+
+Name: <input type="text" id="name">
+<br><br>
+
+Email: <input type="email" id="email">
+<br><br>
+
+<button type="button" id="submitBtn">Submit with REST API</button>
+
+<p id="result"></p>
+
+<script>
+document.getElementById("submitBtn").addEventListener("click", async () => {
+
+    // Send customer information to the Express REST API
+    const response = await fetch("/api/customer", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+            name: document.getElementById("name").value,
+            email: document.getElementById("email").value
+        })
+    });
+
+    // Read the JSON response from Express
+    const data = await response.json();
+
+    // Display the response without reloading the page
+    document.getElementById("result").innerHTML =
+        data.message + "<br>" + data.email;
+});
+</script>
+
 </body>
 </html>
